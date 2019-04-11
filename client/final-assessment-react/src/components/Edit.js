@@ -45,18 +45,18 @@ class Edit extends Component {
         
       return (
         <form onSubmit={this.handleSubmit}>
-            <h2> Edit data</h2>
+            <h2> Edit apprentice name</h2>
           <label>
               Update FirstName:
-          <input type="text" value={first_name} onChange={this.handleChangeName}/>
+          <input placeholder="first" type="text" value={first_name} onChange={this.handleChangeName}/>
           </label>
           <label>
               Update LastName:
-          <input type="text" value={last_name}  onChange={this.handleChangelast_name}/>
+          <input placeholder="last" type="text" value={last_name}  onChange={this.handleChangelast_name}/>
           </label>
           <label>
               ID:
-          <input type="text" value={id}  onChange={this.handleChangeId}/>
+          <input placeholder="id" type="text" value={id}  onChange={this.handleChangeId}/>
           </label>
           <input type="submit" values="values" />
         

@@ -23,6 +23,13 @@ app.get("/data", async (req, res) => {
     res.json(databaseItems.rows);
     // await client.end();
 });
+app.get("/cohort", async (req, res) => {
+    const client = await pool.connect();
+    let databaseItems = await client.query("SELECT * FROM cohort");
+    client.release();
+    res.json(databaseItems.rows);
+    // await client.end();
+});
   //---------index of event by ID ---------
 app.get("/data/:id", async (req, res) => {
     const client = await pool.connect();

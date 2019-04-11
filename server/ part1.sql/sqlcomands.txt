@@ -1,15 +1,20 @@
 -----creating the database---------------------------------------------------
-1. # CREATE DATABASE name_of_database;
+1. # CREATE DATABASE final_assessment;
 
 -----------create tables --------------------------------------------------------
-1. #CREATE TABLE cohorts(id SERIAL, name VARCHAR(225), date DATE);
+table one;
+1. #CREATE TABLE cohorts(cohort_number SERIAL, city VARCHAR(225), year VARCHAR(225));
 2.(INSERT VALUES)# INSERT INTO name_of_table(column_name, column_name) VALUES(value1,value1),(value1,value1),(value1,value1);
 3.(tosee whats in the table)#SELECT * FROM name_of_table;
+table two;
+1. #CREATE TABLE apprentince(cohort_number int, first_name VARCHAR(225), last_name VARCHAR(225));
+2.(INSERT VALUES)# INSERT INTO name_of_table(column_name, column_name) VALUES(value1,value1),(value1,value1),(value1,value1);
+3.(tosee whats in the table)#SELECT * FROM apprentince;
 
 
 ---------INNER JOIN-----------------------------------------------------------
-1.SELECT columnn_name, COUNT(*)
-FROM name_of_table
-GROUP BY column_name
-HAVING COUNT (*) > value;
+1.SELECT first_name, appertince.cohort_number
+FROM cohorts
+JOIN apprentince
+  ON cohorts.cohort_number = apprentince.cohort_number;
 -------------------------------------------------------------------------------

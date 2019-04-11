@@ -57,7 +57,7 @@ class AddData extends Component {
         
       return (
         <form onSubmit={this.handleSubmit}>
-        <h2>add to data</h2>
+        <h2>add to apprentice</h2>
           <label>
               fist name:
           <input type="text" value={first_name} onChange={this.handleChangeName}/>
