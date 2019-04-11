@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Deletebyid from './Deletebyid'
-
+import Deletebyid from './Deletebyid';
+import Edit from './Edit';
+import  './Read.css';
 
 
 
@@ -12,13 +13,39 @@ class Read extends Component {
       isLoaded: false,
       items: []
     };
+    this.handleEdit = this.handleEdit.bind(this);
   }
+
+  handleEdit(id,first_name,last_name){
+    const body = {
+      first_name: first_name,
+      last_name:last_name
+
+    }
+    fetch(`/data/${id}`,{
+      method:'PUT',
+      body: JSON.stringify(body),
+      headers:{'Content-Type':'application/json'}
+    }).then(res =>res.json()).then(newData=>{
+      console.log(newData);
+      const allItems = this.state.items.filter(function(item){
+        return item.id !== parseInt(id)
+      })
+      console.log(allItems)
+      this.setState({
+        items:[...allItems,newData]
+      })
+
+    }).catch(error =>console.error(error));
+  }
+  
   Deletedata(deleteItem){
     
-    console.log(deleteItem)
+    console.log("delete items =",deleteItem, typeof(deleteItem))
+    
     var newlist = this.state.items.filter(item=>{
       // item.id is need becuse that the element in items and we are check comparing their id
-      return item.id !== deleteItem})
+      return parseInt(item.id )!== parseInt(deleteItem)});
       console.log(newlist);
     this.setState({items:newlist})
   }
@@ -58,18 +85,19 @@ class Read extends Component {
       return (
         <div>
         <Deletebyid Deletedata = {(x)=>this.Deletedata(x)}/>
+        < Edit editData={this.handleEdit} />
         {/* // <div>
         //   <p>{items}</p>
         // </div> */}
-
-        <ol>
+        <h1>apprentice names</h1>
+        <ul>
           {items.map(item => (
             <li key={item.id}>
               {/* {item.name} */}
-              {item.name} {item.data}
+              {item.first_name} {item.last_name}
             </li>
           ))}
-        </ol>
+        </ul>
         </div>
       );
     }

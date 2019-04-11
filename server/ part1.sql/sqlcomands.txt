@@ -1,0 +1,15 @@
+-----creating the database---------------------------------------------------
+1. # CREATE DATABASE name_of_database;
+
+-----------create tables --------------------------------------------------------
+1. #CREATE TABLE cohorts(id SERIAL, name VARCHAR(225), date DATE);
+2.(INSERT VALUES)# INSERT INTO name_of_table(column_name, column_name) VALUES(value1,value1),(value1,value1),(value1,value1);
+3.(tosee whats in the table)#SELECT * FROM name_of_table;
+
+
+---------INNER JOIN-----------------------------------------------------------
+1.SELECT columnn_name, COUNT(*)
+FROM name_of_table
+GROUP BY column_name
+HAVING COUNT (*) > value;
+-------------------------------------------------------------------------------

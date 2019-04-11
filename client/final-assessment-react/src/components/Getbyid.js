@@ -39,11 +39,12 @@ class Getbyid extends Component {
         
       return (
         <form onSubmit={this.handleSubmit}>
+        <h2>Get by id</h2>
           <label>
             <textarea value={value} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
-          <h1>{item.name}</h1>
+          <h1>{item.first_name}<br />{item.last_name}</h1>
         </form>
       );
     }
