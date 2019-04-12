@@ -9,14 +9,14 @@ class AddData extends Component {
       this.state = {
         first_name: '',
         last_name:'',
-        cohort_number:'',
+
         isLoaded: true,
         // item: {}
       };
   
       this.handleChangeName = this.handleChangeName.bind(this);
       this.handleChangelast_name = this.handleChangelast_name.bind(this);
-      this.handleChangecohort_number = this.handleChangecohort_number.bind(this);
+    
       this.handleSubmit = this.handleSubmit.bind(this);
     }
   
@@ -26,19 +26,17 @@ class AddData extends Component {
     handleChangelast_name(event) {
         this.setState({last_name: event.target.value});
       }
-      handleChangecohort_number(event) {
-        this.setState({cohort_number: event.target.value});
-      }
+     
   
     handleSubmit(event) {
-        // console.log('this is what the state looks like',this.state)
-        // console.log('this is the Json.stringify ',JSON.stringify({name:this.state.first_name, date:this.state.last_name}))
+        console.log('this is what the state looks like',this.state)
+        console.log('this is the Json.stringify ',JSON.stringify({name:this.state.first_name, date:this.state.last_name}))
         fetch('/data',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
               },
-            body:JSON.stringify({first_name:this.state.first_name, last_name:this.state.last_name,cohort_name:this.state.last_name})
+            body:JSON.stringify({first_name:this.state.first_name, last_name:this.state.last_name})
             })
         .then(res => res.json())
         .then(
@@ -50,10 +48,11 @@ class AddData extends Component {
             });
           })
           event.preventDefault();
+          
     }
   
     render() {
-        const {last_name, first_name, cohort_number} = this.state;
+        const {last_name, first_name} = this.state;
         
       return (
         <form onSubmit={this.handleSubmit}>
@@ -66,10 +65,7 @@ class AddData extends Component {
               last name:
           <input type="text" value={last_name}  onChange={this.handleChangelast_name}/>
           </label>
-          <label>
-              cohort number:
-          <input type="text" value={cohort_number}  onChange={this.handleChangecohort_number}/>
-          </label>
+        
           <input type="submit" value="values" />
         
         </form>

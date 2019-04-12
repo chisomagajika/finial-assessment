@@ -3,6 +3,7 @@ import Getbyid from './components/Getbyid.js';
 import Read from './components/Read.js';
 import AddData from './components/AddData.js';
 import GetCohort from './components/GetCohort.js';
+
 import './App.css'
 // import Edit from './components/Edit';
 const headerstyle ={
@@ -18,6 +19,7 @@ class App extends Component {
       <h1 style={headerstyle}>final assessment</h1>
       <Read />
       <Getbyid />
+  
       <GetCohort />
       <AddData />
       {/* <Edit /> */}

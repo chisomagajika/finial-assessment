@@ -16,10 +16,10 @@ class Read extends Component {
     this.handleEdit = this.handleEdit.bind(this);
   }
 
-  handleEdit(id,first_name,last_name){
+  handleEdit(id,name,date){
     const body = {
-      first_name: first_name,
-      last_name:last_name
+      name: name,
+      date:date
 
     }
     fetch(`/data/${id}`,{
@@ -62,7 +62,9 @@ class Read extends Component {
           });
           
         },
-       
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -87,7 +89,7 @@ class Read extends Component {
         {/* // <div>
         //   <p>{items}</p>
         // </div> */}
-        <h1>apprentice names</h1>
+
         <ul>
           {items.map(item => (
             <li key={item.id}>

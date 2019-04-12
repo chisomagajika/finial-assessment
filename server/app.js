@@ -30,7 +30,7 @@ app.get("/cohort", async (req, res) => {
     res.json(databaseItems.rows);
     // await client.end();
 });
-  //---------index of event by ID ---------
+  //---------index  ---------
 app.get("/data/:id", async (req, res) => {
     const client = await pool.connect();
     var databaseItems = await client.query("SELECT * FROM apprentice WHERE id=$1", [
@@ -39,12 +39,12 @@ app.get("/data/:id", async (req, res) => {
     client.release();
     res.json(databaseItems.rows[0]); //event is data inputed by user in the url bar
 });
-  //---------add one new event to events---------
+  //---------add one ---------
 app.post("/data", async (req, res) => {
     const client = await pool.connect();
     await client.query(
-      "INSERT INTO apprentice(first_name,last_name,cohort_number) VALUES($1, $2,$3) RETURNING *",
-      [req.body.first_name,req.body.last_name,req.body.cohort_number]
+      "INSERT INTO apprentice(first_name,last_name) VALUES($1, $2) RETURNING *",
+      [req.body.first_name,req.body.last_name]
     
     );
     console.log('query params',req.body.forst_name,req.body.last_name);
@@ -53,7 +53,7 @@ app.post("/data", async (req, res) => {
     client.release();
     res.json(databaseItems.rows);
 });
-  //---------edit one event from events---------
+  //---------edit one ---------
 app.put("/data/:id", async (req, res) => {
     const client = await pool.connect();
     // var oldData = client.query(function (dataFunc) {
@@ -72,7 +72,15 @@ app.put("/data/:id", async (req, res) => {
     client.release();
     res.json(found.rows[0])
 });
-  //---------delete one event from events---------
+app.get("/data/:first_name", async (req, res) => {
+    const client = await pool.connect();
+    var databaseItems = await client.query("SELECT * FROM apprentice WHERE first_name=$1", [
+      req.params.first_name
+    ]);
+    client.release();
+    res.json(databaseItems.rows[0]); //event is data inputed by user in the url bar
+});
+  //---------delete one ---------
 app.delete("/data/:id", async (req, res) => {
     const client = await pool.connect();
     var dataToDelete = client.query(function (dataFunc) {
